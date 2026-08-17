@@ -1,0 +1,183 @@
+#1. Cafeteria Plate Stack
+Scenario:
+A cafeteria stores clean plates in a stack after washing. The last plate placed is the first one
+taken by a customer.
+Conditions:
+• The stack can store a maximum of 20 plates.
+• Only Steel and Ceramic plates are allowed.
+• Duplicate Plate IDs are not allowed.
+• If the stack is full, no new plate can be added.
+Operations:
+• Add Plate (Push)
+• Remove Plate (Pop)
+• View Top Plate (Peek)
+• Display Plate Stack
+
+#CODE
+class PlateStack:
+    def __init__(self):
+        self.stack = []
+        self.max_size = 20
+
+    def push(self, plate_id, plate_type):
+        if len(self.stack) >= self.max_size:
+            print("Stack is full!")
+            return
+
+        if plate_type not in ["Steel", "Ceramic"]:
+            print("Only Steel and Ceramic plates are allowed!")
+            return
+
+        for plate in self.stack:
+            if plate[0] == plate_id:
+                print("Duplicate Plate ID not allowed!")
+                return
+
+        self.stack.append((plate_id, plate_type))
+        print("Plate added successfully.")
+
+    def pop(self):
+        if not self.stack:
+            print("Stack is empty!")
+        else:
+            print("Removed Plate:", self.stack.pop())
+
+    def peek(self):
+        if not self.stack:
+            print("Stack is empty!")
+        else:
+            print("Top Plate:", self.stack[-1])
+
+    def display(self):
+        if not self.stack:
+            print("Stack is empty!")
+        else:
+            print("Plate Stack (Top to Bottom):")
+            for plate in reversed(self.stack):
+                print(plate)
+
+ps = PlateStack()
+
+while True:
+    print("\n1. Add Plate")
+    print("2. Remove Plate")
+    print("3. View Top Plate")
+    print("4. Display Plate Stack")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        pid = input("Enter Plate ID: ")
+        ptype = input("Enter Plate Type (Steel/Ceramic): ")
+        ps.push(pid, ptype)
+
+    elif choice == 2:
+        ps.pop()
+
+    elif choice == 3:
+        ps.peek()
+
+    elif choice == 4:
+        ps.display()
+
+    elif choice == 5:
+        print("Program Ended.")
+        break
+
+    else:
+        print("Invalid Choice!")
+
+
+
+#7. Parking Garage (Single Lane)
+Scenario:
+A single-lane parking garage allows vehicles to park one behind another. The last parked
+vehicle must leave first.
+Conditions:
+• Maximum parking capacity is 10 vehicles.
+• Only Car and Bike are allowed.
+• Vehicle registration number must be unique.
+• Trucks and buses are not permitted.
+Operations:
+• Park Vehicle (Push)
+• Exit Vehicle (Pop)
+• Top Vehicle (Peek)
+• Display Parked Vehicles
+
+
+#CODE
+
+class ParkingGarage:
+    def __init__(self):
+        self.stack = []
+        self.max_size = 10
+
+    def park_vehicle(self, reg_no, vehicle_type):
+        if len(self.stack) >= self.max_size:
+            print("Parking Garage is Full!")
+            return
+
+        if vehicle_type not in ["Car", "Bike"]:
+            print("Only Car and Bike are allowed!")
+            return
+
+        for vehicle in self.stack:
+            if vehicle[0] == reg_no:
+                print("Duplicate Registration Number not allowed!")
+                return
+
+        self.stack.append((reg_no, vehicle_type))
+        print("Vehicle Parked Successfully.")
+
+    def exit_vehicle(self):
+        if not self.stack:
+            print("Parking Garage is Empty!")
+        else:
+            print("Exited Vehicle:", self.stack.pop())
+
+    def top_vehicle(self):
+        if not self.stack:
+            print("Parking Garage is Empty!")
+        else:
+            print("Top Vehicle:", self.stack[-1])
+
+    def display(self):
+        if not self.stack:
+            print("No Vehicles Parked.")
+        else:
+            print("\nParked Vehicles (Top to Bottom):")
+            for vehicle in reversed(self.stack):
+                print(vehicle)
+
+garage = ParkingGarage()
+
+while True:
+    print("\n1. Park Vehicle")
+    print("2. Exit Vehicle")
+    print("3. Top Vehicle")
+    print("4. Display Parked Vehicles")
+    print("5. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        reg_no = input("Enter Registration Number: ")
+        vehicle_type = input("Enter Vehicle Type (Car/Bike): ")
+        garage.park_vehicle(reg_no, vehicle_type)
+
+    elif choice == 2:
+        garage.exit_vehicle()
+
+    elif choice == 3:
+        garage.top_vehicle()
+
+    elif choice == 4:
+        garage.display()
+
+    elif choice == 5:
+        print("Program Ended.")
+        break
+
+    else:
+        print("Invalid Choice!")
