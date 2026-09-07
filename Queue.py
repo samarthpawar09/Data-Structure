@@ -18,12 +18,12 @@ class Queue:
             print("Nothing to print..")
             return
         else:
-            y=self.QT[self.F]
+            x=self.QT[self.F]
         if self.F==self.R:
             self.F=self.R=-1
         else:
             self.F=self.F+1
-        return y
+        return x
     
     def display(self):
         if self.F==-1:
