@@ -29,7 +29,30 @@ class Stack:
                 return self.ST[i]
 
 s1= Stack()
-s1.insert(45)
-s1.display()
+while True:
+    print("\n1. Insert")
+    print("2. Delete")
+    print("3. Peek")
+    print("4. Display")
+    print("5. Exit")
+
+    choice=int(input("Enter your choice: "))
+
+    if choice==1:
+        x=int(input("Enter element to insert: "))
+        s1.insert(x)
+    elif choice==2:
+        x=s1.delete()
+        if x is not None:
+            print("Deleted element is:",x)
+    elif choice==3:
+        s1.peek()
+    elif choice==4:
+        s1.display()
+    elif choice==5:
+        break
+
+
+            
 
             
